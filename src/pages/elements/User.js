@@ -4,6 +4,8 @@ import { ExportIcon } from '@patternfly/react-icons';
 import Definition from '../../components/Definition';
 import Roles from './Roles';
 
+
+
 function User({ user }) {
   let downloadKeyButton;
   let gpg;
@@ -89,12 +91,16 @@ function User({ user }) {
               </a>
             )) ||
               '-'
+          ],
+          [ 
+            'Public gpg Key',   <button onClick={downloadKey}> {key} </button> 
           ]
         ]}
       />
       <h5> Public GPG Key </h5>
       {gpg}
       <h4>Roles</h4>
+      console.log(key);
       <Roles roles={user.roles} />
     </React.Fragment>
   );
