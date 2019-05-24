@@ -29,10 +29,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     "@babel/preset-react": "^7.0.0",
 <<<<<<< HEAD
 >>>>>>> small changes and cleaned up code with lint
+=======
+>>>>>>> update package.json
 =======
 >>>>>>> update package.json
     "eslint-config-airbnb": "^17.1.0",
