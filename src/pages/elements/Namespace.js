@@ -8,7 +8,11 @@ function Namespace({ namespace }) {
   if (namespace.grafanaUrl !== null) {
     grafana = (
       <a href={namespace.grafanaUrl} target="_blank" rel="noopener noreferrer">
+<<<<<<< HEAD
         Link
+=======
+        Grafana
+>>>>>>> 355d8c2... added grafana links to custom dashbaords
       </a>
     );
   } else {
@@ -40,14 +44,7 @@ function Namespace({ namespace }) {
               {namespace.cluster.name}
             </Link>
           ],
-          [
-            'Grafana',
-            <GrafanaUrl
-              jumpHost={namespace.cluster.jumpHost}
-              cluster={namespace.cluster.name}
-              namespace={namespace.name}
-            />
-          ]
+          ['Grafana', grafana]
         ]}
       />
 
