@@ -8,7 +8,7 @@ function Cluster({ cluster }) {
   if (cluster.grafanaUrl !== null) {
     grafana = (
       <a href={cluster.grafanaUrl} target="_blank" rel="noopener noreferrer">
-        Link
+        Grafana
       </a>
     );
   } else {
@@ -26,7 +26,7 @@ function Cluster({ cluster }) {
               {cluster.path}
             </a>
           ],
-          ['Grafana', <GrafanaUrl jumpHost={cluster.jumpHost} cluster={cluster.name} />]
+          ['Grafana', grafana]
         ]}
       />
 
