@@ -27,9 +27,9 @@ function Namespaces({ namespaces }) {
         ns.grafana_url = <GrafanaUrl jumpHost={ns.cluster.jumpHost} cluster={ns.cluster.name} namespace={ns.name} />;
       }
     }
-
     return ns;
   });
+  console.log(processedNamespaces);
 
   const colName = {
     header: {
