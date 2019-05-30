@@ -10,7 +10,6 @@ function Users({ users }) {
   const linkFormat = url => value => <a href={`${url || ''}${value}`}>{value}</a>;
   const [filterText, changeFilterText] = useState('');
   const matchedUsers = [];
-
   const processedUsers = sortByName(users.slice()).map(u => {
     u.name_path = [u.name, u.path];
     return u;
@@ -24,7 +23,6 @@ function Users({ users }) {
   function handleFilterTextChange(txt) {
     changeFilterText(txt);
   }
-
   return (
     <div>
       <SearchBar filterText={filterText} handleFilterTextChange={handleFilterTextChange} />
