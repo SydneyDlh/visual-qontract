@@ -4,6 +4,19 @@ import GrafanaUrl from './GrafanaUrl';
 import Definition from '../../components/Definition';
 
 function Namespace({ namespace }) {
+  let grafana;
+  if (namespace.grafanaUrl !== null) {
+    grafana = (
+      <a href={namespace.grafanaUrl} target="_blank" rel="noopener noreferrer">
+        Link
+      </a>
+    );
+  } else {
+    grafana = (
+      <GrafanaUrl jumpHost={namespace.cluster.jumpHost} cluster={namespace.cluster.name} namespace={namespace.name} />
+    );
+  }
+  console.log(grafana);
   return (
     <React.Fragment>
       <h4>Info</h4>
