@@ -13,7 +13,6 @@ const GET_CLUSTER = gql`
       name
       description
       serverUrl
-      grafanaUrl
       jumpHost {
         hostname
       }
@@ -21,7 +20,6 @@ const GET_CLUSTER = gql`
         path
         name
         description
-        grafanaUrl
         cluster {
           name
           jumpHost {
@@ -40,7 +38,6 @@ const GET_CLUSTERS = gql`
       name
       description
       serverUrl
-      grafanaUrl
       jumpHost {
         hostname
       }
@@ -48,7 +45,6 @@ const GET_CLUSTERS = gql`
         path
         name
         description
-        grafanaUrl
         cluster {
           name
           path

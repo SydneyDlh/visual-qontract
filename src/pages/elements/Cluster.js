@@ -4,16 +4,6 @@ import Namespaces from './Namespaces';
 import GrafanaUrl from './GrafanaUrl';
 
 function Cluster({ cluster }) {
-  let grafana;
-  if (cluster.grafanaUrl !== null) {
-    grafana = (
-      <a href={cluster.grafanaUrl} target="_blank" rel="noopener noreferrer">
-        Link
-      </a>
-    );
-  } else {
-    grafana = <GrafanaUrl jumpHost={cluster.jumpHost} cluster={cluster.name} />;
-  }
   return (
     <React.Fragment>
       <h4>Info</h4>
@@ -26,7 +16,7 @@ function Cluster({ cluster }) {
               {cluster.path}
             </a>
           ],
-          ['Grafana', grafana]
+          ['Grafana', <GrafanaUrl jumpHost={cluster.jumpHost} cluster={cluster.name} />]
         ]}
       />
 

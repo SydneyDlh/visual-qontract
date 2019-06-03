@@ -16,19 +16,12 @@ function Namespaces({ namespaces }) {
     ns.name_path = [ns.name, ns.path];
     if (typeof ns.cluster !== 'undefined') {
       ns.cluster_name_path = [ns.cluster.name, ns.cluster.path];
-      console.log(ns);
-      if (ns.grafanaUrl !== null) {
-        ns.grafana_url = (
-          <a href={ns.grafanaUrl} target="_blank" rel="noopener noreferrer">
-            Link
-          </a>
-        );
-      } else {
-        ns.grafana_url = <GrafanaUrl jumpHost={ns.cluster.jumpHost} cluster={ns.cluster.name} namespace={ns.name} />;
-      }
+      ns.grafana_url = [ns.cluster.jumpHost, ns.cluster.name, ns.name];
     }
+
     return ns;
   });
+
   const colName = {
     header: {
       label: 'Name',
@@ -104,7 +97,7 @@ function Namespaces({ namespaces }) {
       formatters: [headerFormat]
     },
     cell: {
-      formatters: [cellFormat]
+      formatters: [value => <GrafanaUrl jumpHost={value[0]} cluster={value[1]} namespace={value[2]} />, cellFormat]
     },
     property: 'grafana_url'
   };
