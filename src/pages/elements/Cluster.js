@@ -26,7 +26,7 @@ function Cluster({ cluster }) {
               {cluster.path}
             </a>
           ],
-          ['Grafana', grafana]
+          ['Grafana', <GrafanaUrl jumpHost={cluster.jumpHost} cluster={cluster.name} />]
         ]}
       />
 
