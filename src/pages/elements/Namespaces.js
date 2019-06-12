@@ -4,11 +4,10 @@ import { Table } from 'patternfly-react';
 import GrafanaUrl from './GrafanaUrl';
 import { sortByName } from '../../components/Utils';
 
-function Namespaces({ namespaces }) {
+function Namespaces({ namespaces, users }) {
   if (namespaces.length === 0) {
     return <p style={{ 'font-style': 'italic' }}>No namespaces.</p>;
   }
-
   const headerFormat = value => <Table.Heading>{value}</Table.Heading>;
   const cellFormat = value => <Table.Cell>{value}</Table.Cell>;
 
