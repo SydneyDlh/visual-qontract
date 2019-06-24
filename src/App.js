@@ -8,6 +8,7 @@ import ApolloClient from 'apollo-boost';
 import { VerticalNav, VerticalNavItem, VerticalNavSecondaryItem, VerticalNavMasthead } from 'patternfly-react';
 import { routes } from './routes';
 import './App.css';
+import NotFoundPage from './pages/NotFoundPage';
 
 const client = new ApolloClient({
   uri: window.GRAPHQL_URI || '/graphql'
@@ -40,6 +41,7 @@ class App extends React.Component {
     return (
       <Switch>
         {allRoutes}
+        <Route component={NotFoundPage} />
         <Redirect from="*" to="/" key="default-route" />
       </Switch>
     );
