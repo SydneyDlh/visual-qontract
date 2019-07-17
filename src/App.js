@@ -8,18 +8,45 @@ import { IntrospectionFragmentMatcher, InMemoryCache } from 'apollo-cache-inmemo
 import { VerticalNav, VerticalNavItem, VerticalNavSecondaryItem, VerticalNavMasthead } from 'patternfly-react';
 import { routes } from './routes';
 import './App.css';
-import introspectionQueryResultData from './fragmentTypes.json';
 
-const fragmentMatcher = new IntrospectionFragmentMatcher({
-  introspectionQueryResultData
-});
+const fetch = require('node-fetch');
 
-const cache = new InMemoryCache({ fragmentMatcher });
+let client;
 
-const client = new ApolloClient({
-  cache,
-  uri: window.GRAPHQL_URI || '/graphql'
-});
+fetch(process.env.GRAPHQL_URI || 'http://localhost:4000/graphql', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    variables: {},
+    query: `
+      {
+        __schema {
+          types {
+            kind
+            name
+            possibleTypes {
+              name
+            }
+          }
+        }
+      }
+    `
+  })
+})
+  .then(result => result.json())
+  .then(result => {
+    // here we're filtering out any type information unrelated to unions or interfaces
+    const filteredData = result.data.__schema.types.filter(type => type.possibleTypes !== null);
+    result.data.__schema.types = filteredData;
+    const introspectionQueryResultData = JSON.stringify(result.data);
+    const fragmentMatcher = new IntrospectionFragmentMatcher(introspectionQueryResultData);
+    const cache = new InMemoryCache(fragmentMatcher);
+    client = new ApolloClient({
+      cache,
+      uri: window.GRAPHQL_URI || '/graphql'
+    });
+    console.log(client);
+  });
 
 class App extends React.Component {
   constructor() {
@@ -59,6 +86,7 @@ class App extends React.Component {
   };
 
   render() {
+    console.log(client);
     const { location } = this.props;
     const vertNavItems = this.menu.map(item => {
       const active = location.pathname === item.to;
